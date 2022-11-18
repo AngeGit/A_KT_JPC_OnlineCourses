@@ -97,8 +97,8 @@ fun ComponentExercisesScreen() {
     //SuperheroView()
     //SuperheroGridView()
     //SuperheroWithControlView()
-   SuperheroStickyView()
-   // ScaffoldExample()
+   //SuperheroStickyView()
+    ScaffoldExample()
 
 }
 //region DropdownMenu (Spinner XD)
