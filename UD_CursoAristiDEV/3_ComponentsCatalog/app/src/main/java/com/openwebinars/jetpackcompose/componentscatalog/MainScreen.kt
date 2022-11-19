@@ -23,7 +23,8 @@ fun MainScreen() {
         color = Color.White
     ) {
        // ComponentExercisesScreen()
-        NavigationExercises()
+       // NavigationExercises()
+        AnimationExercises()
     }
 
 
