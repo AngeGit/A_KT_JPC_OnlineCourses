@@ -3,6 +3,7 @@ package com.openwebinars.jetpackcompose.jetpackcomposeinstagram
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -12,8 +13,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.openwebinars.jetpackcompose.jetpackcomposeinstagram.login.ui.LoginScreen
 import com.openwebinars.jetpackcompose.jetpackcomposeinstagram.login.ui.LoginViewModel
 import com.openwebinars.jetpackcompose.jetpackcomposeinstagram.ui.theme.JetpackComposeInstagramTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val loginViewModel:LoginViewModel by viewModels() //Prepara e inyecta el viewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -23,7 +28,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                   LoginScreen(LoginViewModel())
+                  // LoginScreen(LoginViewModel())
+                    LoginScreen(loginViewModel)
                 }
             }
         }
@@ -35,7 +41,9 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
+
     JetpackComposeInstagramTheme {
-        LoginScreen(LoginViewModel())
+        //LoginScreen(LoginViewModel())
+
     }
 }

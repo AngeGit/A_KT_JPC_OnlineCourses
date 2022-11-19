@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -37,9 +38,16 @@ fun LoginScreen(loginViewModel: LoginViewModel) {
             .fillMaxSize()
             .padding(8.dp)
     ) {
-        Header(Modifier.align(Alignment.TopEnd))
-        Body(Modifier.align(Alignment.Center), loginViewModel)
-        Footer(Modifier.align(Alignment.BottomCenter))
+        val isLoading:Boolean by loginViewModel.isLoading.observeAsState(initial=false)
+
+        if(isLoading){
+           LoadingProgressBar()
+        }else{
+            Header(Modifier.align(Alignment.TopEnd))
+            Body(Modifier.align(Alignment.Center), loginViewModel)
+            Footer(Modifier.align(Alignment.BottomCenter))
+        }
+
     }
 
 }
@@ -76,7 +84,7 @@ fun Body(modifier: Modifier,loginViewModel: LoginViewModel) {
         Spacer(Modifier.size(8.dp))
         ForgotPassWord(Modifier.align(Alignment.End))
         Spacer(Modifier.size(16.dp))
-        LoginButton(isLoginEnabled)
+        LoginButton(isLoginEnabled, loginViewModel)
         Spacer(Modifier.size(16.dp))
         LoginDivider()
         Spacer(Modifier.size(32.dp))
@@ -154,9 +162,9 @@ fun ForgotPassWord(modifier: Modifier) {
     )
 }
 @Composable
-fun LoginButton(loginEnabled: Boolean) {
+fun LoginButton(loginEnabled: Boolean, loginViewModel: LoginViewModel) {
     Button(
-        onClick = { Log.d("Login","Clicado Login")},
+        onClick = {loginViewModel.onLoginSelected()},
         enabled = loginEnabled,
         modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
@@ -258,4 +266,21 @@ fun SignUp() {
     }
 }
 //endregion Footer
+
+@Composable
+fun LoadingProgressBar() {
+    Column(
+        Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier
+                .size(200.dp),
+            color = Color(0xFF78C8F9),
+            strokeWidth = 8.dp
+        )
+    }
+}
 
