@@ -8,9 +8,9 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class JetpackComposeInstagramApp : Application() {
     /*
-    Activities=> Anotación @AndroidEntryPoint
-    ViewModels=> Anotación @HiltViewModel
-    Clases que no son Activities o ViewModels=> Inyectando el constructor=> Anotación @InjectConstructor
-    Clases de libs o que contengan interfaces=> A través de un provider
+        Activities=> Anotación @AndroidEntryPoint
+        ViewModels=> Anotación @HiltViewModel
+        Clases que no son Activities o ViewModels=> Inyectando el constructor=> Anotación @InjectConstructor
+        Clases de libs o que contengan interfaces=> A través de un provider
      */
 }
