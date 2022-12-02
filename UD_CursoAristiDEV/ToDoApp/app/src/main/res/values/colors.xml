@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="topbar">#9BBA47</color>
+    <color name="topbar_content">#8BBDD57B</color>
+    <color name="fab">#B9DA5E</color>
+    <color name="fab_content">#FFFFFFFF</color>
+
+    <color name="addtaskdialogtitle">#9BBA47</color>
+    <color name="addtaskdialogbutton">#9BBA47</color>
+    <color name="lightindicator">#B9DA5E</color>
+    <color name="darkindicator">#9BBA47</color>
+
+    <color name="item_card">#37B9DA5E</color>
+    <color name="chk_item_card">#B9DA5E</color>
+    <color name="txt_item_card">#7C9538</color>
 </resources>
