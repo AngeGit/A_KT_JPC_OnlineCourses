@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">ToDoApp</string>
+    <string name="app_name">Getting things done!</string>
+    <string name="cnt_desc_close"> Close App </string>
+    <string name="cnt_desc_add">Add task</string>
+    <string name="add_task_dialog_title">Add your task: </string>
+    <string name="add_task_dialog_button">Add</string>
+    <string name="empty_task">No empty task, sorry (no sorry). Stop being so lazy! surely you have tons of things to do!</string>
+
 </resources>
