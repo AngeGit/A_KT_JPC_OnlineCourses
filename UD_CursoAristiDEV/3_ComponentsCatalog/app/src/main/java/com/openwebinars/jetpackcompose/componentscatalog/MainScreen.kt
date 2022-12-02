@@ -22,7 +22,9 @@ fun MainScreen() {
      //   modifier = Modifier.fillMaxSize(),
         color = Color.White
     ) {
-        ComponentExercisesScreen()
+       // ComponentExercisesScreen()
+       // NavigationExercises()
+        AnimationExercises()
     }
 
 
