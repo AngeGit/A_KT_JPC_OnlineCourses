@@ -1,0 +1,16 @@
+package com.jetpackcompose.todoapp.addtasks.data
+
+import androidx.room.*
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface TaskDao {
+    @Query("SELECT * FROM TaskEntity")
+    fun getTasks(): Flow<List<TaskEntity>>
+    @Insert
+    suspend fun addTask(item:TaskEntity)
+    @Delete
+    suspend fun deleteTask(item: TaskEntity)
+    @Update
+    suspend fun updateTask(item: TaskEntity)
+}

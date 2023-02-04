@@ -14,28 +14,33 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.jetpackcompose.todoapp.R
-import com.jetpackcompose.todoapp.addtasks.ui.TasksViewModel
 import com.jetpackcompose.todoapp.addtasks.ui.model.TaskModel
 
 
 @Composable
-fun TaskList(tasksViewModel: TasksViewModel) {
-    val myTasks: List<TaskModel> = tasksViewModel.tasks
+fun TaskList(
+    tasks: List<TaskModel>,
+    onTaskDeleted: (TaskModel) -> Unit,
+    onTaskUpdated: (TaskModel) -> Unit
+) {
     LazyColumn{
-        items(myTasks, key= { it.id}) { task->
-            TaskItem(task,tasksViewModel)
+        items(tasks, key= { it.id}) { task->
+            TaskItem(task,onTaskDeleted,onTaskUpdated)
         }
     }
 }
 
 @Composable
-fun TaskItem(taskModel: TaskModel, tasksViewModel: TasksViewModel) {
+fun TaskItem(
+    taskModel: TaskModel,
+    onTaskDeleted: (TaskModel) -> Unit,
+    onTaskUpdated: (TaskModel) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
             .pointerInput(Unit) {
-                detectTapGestures(onLongPress = { tasksViewModel.onItemRemove(taskModel) })
+                detectTapGestures(onLongPress = { onTaskDeleted(taskModel) })
             },
         shape= MaterialTheme.shapes.small,
         backgroundColor = colorResource(id = R.color.item_card),
@@ -55,7 +60,7 @@ fun TaskItem(taskModel: TaskModel, tasksViewModel: TasksViewModel) {
             )
             Checkbox(
                 checked = taskModel.done,
-                onCheckedChange = { tasksViewModel.onTaskChkSelected(taskModel) },
+                onCheckedChange = { onTaskUpdated(taskModel) },
                 colors = CheckboxDefaults.colors(
                     checkedColor = colorResource(id = R.color.chk_item_card),
                     uncheckedColor = colorResource(id = R.color.chk_item_card),

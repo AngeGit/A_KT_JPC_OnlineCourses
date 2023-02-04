@@ -1,6 +1,5 @@
 package com.jetpackcompose.todoapp.addtasks.ui.screencomponents
 
-import android.app.Activity
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -8,26 +7,30 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jetpackcompose.todoapp.R
-import com.jetpackcompose.todoapp.addtasks.ui.TasksViewModel
+import com.jetpackcompose.todoapp.addtasks.ui.model.TaskModel
 import com.jetpackcompose.todoapp.addtasks.ui.screencomponents.tasklist.TaskList
 
 
 @Composable
-fun MyScaffoldTaskScreen(tasksViewModel: TasksViewModel) {
-    val activity: Activity = LocalContext.current as Activity
+fun MyScaffoldTaskScreen(
+    onCloseApp: () -> Unit,
+    openTaskDialog: () -> Unit,
+    tasks: List<TaskModel>,
+    onTaskDeleted: (TaskModel) -> Unit,
+    onTaskUpdated: (TaskModel) -> Unit
+) {
     Scaffold(
-        topBar = { MyTopAppBar { activity.finish() } },
-        floatingActionButton = { MyFAB { tasksViewModel.onShowDialogClicked() } },
+        topBar = { MyTopAppBar { onCloseApp() } },
+        floatingActionButton = { MyFAB { openTaskDialog() } },
         floatingActionButtonPosition = FabPosition.Center
     ) {
-        TaskList(tasksViewModel)
+        TaskList(tasks,onTaskDeleted,onTaskUpdated)
     }
 }
 
